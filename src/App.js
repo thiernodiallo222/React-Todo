@@ -7,17 +7,17 @@ import TodoForm from './components/TodoComponents/TodoForm';
 const myDailyTasks = [
 
 {
-    task: 'Go to the gym',
+    name: 'Go to the gym',
     id: 1528817077286,
     completed: false
   },
   {
-    task: 'Make a hamburger',
+    name: 'Make a hamburger',
     id: 1528817084358,
     completed: false
   },
   {
-    task: 'Complete your project',
+    name: 'Complete your project',
     id: 345678,
     completed: false
   }
@@ -87,6 +87,7 @@ class App extends React.Component {
         <h2>Welcome to your Todo App!</h2>
         <TodoList attributeOne={this.state.attributeOne} />
         <TodoForm />
+        
       </div>
     );
   }

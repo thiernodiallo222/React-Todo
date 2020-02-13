@@ -1,0 +1,8 @@
+.todo-element{
+width: 50%;
+display: flex;
+flex-direction: row;
+/* color: red; */
+/* background: whitesmoke; */
+border-radius: 15px;
+}

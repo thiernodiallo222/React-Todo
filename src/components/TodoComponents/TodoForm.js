@@ -5,7 +5,7 @@ export class TodoForm extends React.Component {
         return (
             <div>
                 <form>
-                <input name ='todo' place-holder ='enter your todo item here'/>
+                <input name ='todo' place-holder ='enter your todo item here' onChange={this.handleChanges}/>
                 <button className ='add-todo'>add todo</button>
                 <button className ='clear-all'>Clear all</button>
                 </form>
