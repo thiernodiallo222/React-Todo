@@ -23,9 +23,30 @@ const myDailyTasks = [
   }
 ];
 
-// All handler functions should live here as well
+
+class App extends React.Component {
+  // you will need a place to store your state in this component.
+  // design `App` to be the parent component of your application.
+  // this component is going to take care of state, and any change handlers you need to work with your state
+  constructor() {
+    super();
+    this.state =
+    {
+      attributeOne: myDailyTasks,
+      message: ''
+
+    };
+  }
+
+  // All handler functions should live here as well
 // Class methods to update state
- const  addTodo = (e, task) => {
+  handleInputChange = event =>{
+    event.preventDefault();
+    this.setState({message: event.target.value });
+  }
+
+  
+   addTodo = (e, task) => {
     e.preventDefault();
 
     const newTodo = {
@@ -40,7 +61,7 @@ const myDailyTasks = [
   };
 
   // this is a method of App
-  const toggleTodo = itemId => {
+   toggleTodo = itemId => {
     console.log(itemId);
 
     this.setState({
@@ -58,36 +79,24 @@ const myDailyTasks = [
     });
   };
 
-  const ClearAll = e => {
+   clearAll = e => {
     e.preventDefault();
     console.log(this.state.myDailyTasks);
     this.setState({
-      // returns the items that haven't been purchased and purges
+      // returns the items that haven't been completed and purges
       // the ones that have been purchased
       myDailyTasks: this.state.myDailyTasks.filter(element => element.completed === false)
     });
     console.log(this.state.myDailyTasks);
   };
-
-
-class App extends React.Component {
-  // you will need a place to store your state in this component.
-  // design `App` to be the parent component of your application.
-  // this component is going to take care of state, and any change handlers you need to work with your state
-  constructor() {
-    super();
-    this.state =
-    {
-      attributeOne: myDailyTasks,
-    };
-  }
   render() {
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
         <TodoList attributeOne={this.state.attributeOne} />
-        <TodoForm />
-        
+        <TodoForm item ={this.state.addTodo} />
+        {/* <Todo message={this.state.message} /> */}
+        {/* <Todo /> */}
       </div>
     );
   }

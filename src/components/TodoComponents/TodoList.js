@@ -9,9 +9,9 @@ export default function TodoList(props) {
         <div className='todo-list'>
             {
                 props.attributeOne.map(element =>
-                    <p className='todo-element'>
-                      <Todo key={element.id} item = {element}/>  
-                  </p>
+                  
+                <Todo key={element.id} item = {element}/>  
+               
                 
                 )
             }
