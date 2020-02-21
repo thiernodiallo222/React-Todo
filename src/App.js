@@ -25,30 +25,17 @@ const myDailyTasks = [
 
 
 class App extends React.Component {
-  // you will need a place to store your state in this component.
-  // design `App` to be the parent component of your application.
-  // this component is going to take care of state, and any change handlers you need to work with your state
   constructor() {
     super();
     this.state =
     {
       attributeOne: myDailyTasks,
-      message: ''
-
+        attributeTwo: {}
     };
   }
 
-  // All handler functions should live here as well
-// Class methods to update state
-  handleInputChange = event =>{
-    event.preventDefault();
-    this.setState({message: event.target.value });
-  }
-
-  
-   addTodo = (e, task) => {
-    e.preventDefault();
-
+   addTodo = (task) => {
+    if(e) e.preventDefault();
     const newTodo = {
       name: task,
       id: Date.now(),
@@ -56,7 +43,7 @@ class App extends React.Component {
     };
 
     this.setState({
-      myDailyTasks: [...this.state.myDailyTasks, newTodo]
+      attributeOne: [...this.state.attributeOne, newTodo]
     });
   };
 
@@ -64,39 +51,38 @@ class App extends React.Component {
    toggleTodo = itemId => {
     console.log(itemId);
 
-    this.setState({
-      myDailyTasks: this.state.myDailyTasks.map(element => {
+     const newTodoList =this.state.attributeOne.map(element => {
         console.log(element);
         if (itemId === element.id) {
           return {
             ...element,
             completed: !element.completed
           };
+        } else {
+          return element;
         }
 
-        return element;
+        
       })
-    });
+     this.setState({attributeOne: newTodoList})
   };
 
    clearAll = e => {
     e.preventDefault();
-    console.log(this.state.myDailyTasks);
+    console.log(this.state.attributeOne);
     this.setState({
-      // returns the items that haven't been completed and purges
-      // the ones that have been purchased
-      myDailyTasks: this.state.myDailyTasks.filter(element => element.completed === false)
+      myDailyTasks: this.state.attributeOne.filter(element => element.completed === false)
     });
-    console.log(this.state.myDailyTasks);
+    console.log(this.state.attributeOne);
   };
   render() {
     return (
       <div>
         <h2>Welcome to your Todo App!</h2>
-        <TodoList attributeOne={this.state.attributeOne} />
-        <TodoForm item ={this.state.addTodo} />
-        {/* <Todo message={this.state.message} /> */}
-        {/* <Todo /> */}
+        <TodoList attributeOne={this.state.attributeOne} toggleTodo ={this.toggleTodo} />
+        <TodoForm addTodo={this.addTodo} />
+        
+       
       </div>
     );
   }
